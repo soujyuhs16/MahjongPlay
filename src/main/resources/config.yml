@@ -1,0 +1,13 @@
+# MahjongPlay configuration
+
+texture:
+  # Texture provider mode.
+  # - default    : Use the bundled resource pack with CustomModelData (recommended).
+  # - itemsadder : Use custom items from the ItemsAdder plugin.
+  #                Automatically falls back to 'default' if ItemsAdder is not installed.
+  mode: "default"
+
+  itemsadder:
+    # The ItemsAdder namespace where mahjong tile items are defined.
+    # Only used when mode is 'itemsadder'.
+    namespace: "mahjong"
