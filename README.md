@@ -41,6 +41,36 @@
 - Java 21
 - 服务器资源包（麻将牌模型和贴图，已包含在 `resource-pack/` 目录中）
 
+## 材质配置
+
+插件支持两种材质来源，可在 `config.yml` 中选择：
+
+### 默认模式（推荐）
+
+使用自带资源包和 Minecraft 的 CustomModelData，无需任何额外配置。
+
+```yaml
+# config.yml
+texture:
+  mode: "default"
+```
+
+玩家接受服务器资源包后即可正常游玩。
+
+### ItemsAdder 集成
+
+若服务器已安装 [ItemsAdder](https://www.spigotmc.org/resources/itemsadder.73355/) 插件，可将麻将牌对应到 ItemsAdder 中的自定义物品：
+
+```yaml
+# config.yml
+texture:
+  mode: "itemsadder"
+  itemsadder:
+    namespace: "mahjong"  # ItemsAdder 中麻将牌物品的命名空间
+```
+
+> 如果配置为 `itemsadder` 但 ItemsAdder 未安装，插件会自动退回到默认模式，控制台会显示相应警告。
+
 ## 指令
 
 | 指令 | 权限 | 说明 |
@@ -108,6 +138,36 @@ Ported from the Fabric mod [MahjongCraft](https://github.com/doublemoon1119/Mahj
 - Paper 1.21.4+ (tested on Leaves core 1.21.8)
 - Java 21
 - Server resource pack with mahjong tile models (included in `resource-pack/`)
+
+## Texture Configuration
+
+The plugin supports two texture sources, configurable in `config.yml`:
+
+### Default mode (recommended)
+
+Uses the bundled resource pack with Minecraft's CustomModelData system. No extra setup needed.
+
+```yaml
+# config.yml
+texture:
+  mode: "default"
+```
+
+Players simply accept the server resource pack to see the tiles.
+
+### ItemsAdder integration
+
+If the server has [ItemsAdder](https://www.spigotmc.org/resources/itemsadder.73355/) installed, you can map the tiles to custom items defined in ItemsAdder:
+
+```yaml
+# config.yml
+texture:
+  mode: "itemsadder"
+  itemsadder:
+    namespace: "mahjong"  # ItemsAdder namespace for mahjong tile items
+```
+
+> If `mode` is set to `itemsadder` but ItemsAdder is not installed, the plugin automatically falls back to the default resource pack and logs a warning.
 
 ## Commands
 

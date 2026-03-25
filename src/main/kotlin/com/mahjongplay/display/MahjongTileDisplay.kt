@@ -2,15 +2,12 @@ package com.mahjongplay.display
 
 import com.mahjongplay.MahjongPlayPlugin
 import com.mahjongplay.model.MahjongTile
-import io.papermc.paper.datacomponent.DataComponentTypes
-import io.papermc.paper.datacomponent.item.CustomModelData
 import org.bukkit.Location
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.Interaction
 import org.bukkit.entity.ItemDisplay
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
-import org.bukkit.Material
 import org.bukkit.entity.Display
 import org.joml.AxisAngle4f
 import org.joml.Matrix4f
@@ -127,16 +124,13 @@ class MahjongTileDisplay(
     }
 
     companion object {
-        @Suppress("UnstableApiUsage")
-        fun createTileItem(tile: MahjongTile): ItemStack {
-            val item = ItemStack(Material.PAPER)
-            item.setData(
-                DataComponentTypes.CUSTOM_MODEL_DATA,
-                CustomModelData.customModelData()
-                    .addFloat((tile.code + 1).toFloat())
-                    .build()
-            )
-            return item
+        @Volatile
+        private var textureProvider: TextureProvider = DefaultTextureProvider()
+
+        fun setTextureProvider(provider: TextureProvider) {
+            textureProvider = provider
         }
+
+        fun createTileItem(tile: MahjongTile): ItemStack = textureProvider.createTileItem(tile)
     }
 }
